@@ -4,8 +4,8 @@
  Contador Binario 8 bits
 
  Autor: Juan René Chang Lam
- Descripción: Implementa un contador binario de 8 bits con 2 botones
-              utilizando interrupciones. 
+ Descripción: Implementa un contador binario de 8 bits con 2 botones 
+				y un contador hexadecimal con un potenciometro
 
  * Conexiones:
  * - PB1: Pulsador para incrementar (pin 9 en Arduino Nano)
@@ -220,7 +220,7 @@ int main(void) {
         btn_inc_prev = btn_inc_current;
         btn_dec_prev = btn_dec_current;
         
-        if (valor_adc_actual < 50) {
+        if (valor_adc_actual < 30) {
             valor_compensado = 0;
             valor_adc_hex = 0;
         }
@@ -229,7 +229,7 @@ int main(void) {
             valor_adc_hex = 1023;
         }
         else {
-            valor_compensado = ((uint32_t)(valor_adc_actual - 20) * 1023UL) / (1013UL - 20UL);
+            valor_compensado = ((uint32_t)(valor_adc_actual - 20) * 1023UL) / (1013UL - 10UL);
         }
         
         // Convertir a rango 0-255 para representación hexadecimal
